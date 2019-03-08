@@ -1,0 +1,462 @@
+1)Explain file system hierarchy in linux system?
+ans)All there are apper under the root directory/, even they are stored on different physical or
+virtual devices.
+/bin/:In this all the binary information is stored.
+/boot/:These directory contains static files required to boot the system, such as the Linux 
+       kernel. These files are essential for the system to boot properly.
+/dev/:These  directory contains file system entries which represent devices that are attached 
+      to the system. These files are essential for the system to function properly.
+/etc/:These directory is reserved for configuration files that are local to the machine. No 
+      binaries are to be placed in /etc/. Any binaries that were once located in /etc/ should 
+      be placed into /sbin/ or /bin/.
+/lib/:These directory should contain only those libraries needed to execute the binaries in 
+      /bin/ and /sbin/.
+/media/:directory contains subdirectories used as mount points for removeable media, such as 3.5 
+        diskettes, CD-ROMs, and Zip disks.
+/mnt/:These directory is reserved for temporarily mounted file systems, such as NFS file system 
+      mounts. For all removeable media, use the /media/ directory.
+/opt/:directory provides storage for large, static application software packages.
+/proc/:These directory contains special files that either extract information from or send 
+       information to the kernel.
+/sbin/:These directory stores executables used by the root user. The executables in /sbin/ are 
+       only used at boot time and perform system recovery operations. 
+/srv/:directory contains site-specific data served by your system running Red Hat Enterprise 
+      Linux. 
+/sys/:These directory utilizes the new sysfs virtual file system specific to the 2.6 kernel. 
+       With the increased support for hot plug hardware devices in the 2.6 kernel, the /sys/ 
+       directory contains information similarly held in /proc/, but displays a hierarchical 
+       view of specific device information in regards to hot plug devices.
+/usr/: directory is for files that can be shared across multiple machines.
+
+2)what is mkdir command & option -v,-p,-m command?
+ans)mkdir -v filename
+    mkdir -m 777 filename
+    mkdir -p dir1/dir2/dir3
+
+3)what is ls -ltr? In this what is l,t,r?
+ans)It gives the long list with reverse time access.
+l--long   t---time   r--reverse
+
+4)How to list all hidden files and hidden directories?
+ans)ls -la
+
+5)How to display only directories?
+ans)ls -l | grep '^d'  (or) ls -d */ . Here grep command is used to search input. It will 
+filter directories name by matching first character 'd'.
+
+6)How to display only files?
+ans)ls -l | grep -v '^d'. Here filter out directories name by 1st letter 'd'. for reverse effect
+i.e for files display '-v' option is used.
+
+7)what is cd-?
+ans)Prints the previously used directory and changes to it.
+
+8)What is cd~?
+ans)This command simply takes you back to your home directory.
+
+9)What is cd?
+ans)It is used to change the current directory.
+
+10)Which user acount is created on linux while installation?
+ans)It is created for system admin account called root and the password you entered during
+installation is for root user.
+
+11)What is the use of file command?
+ans)These file command is used to determine a file type.
+  file *  this will apper when running file with a wildcard for all files.
+(or) file *.txt  this will display the file ending with .txt.
+
+12)How to check the RAM size?
+ans)free -m (or) free -g (or) cat /proc/meminfo (or) less /proc/meminfo
+
+13)How to check the server resource utilization?
+ans)top (or) vmstat
+
+14)How to get cpu and memory statics?
+ans)for memory statics
+    top (or) free (or) vmstat (or) cat /proc/meminfo
+for cpu utilization
+  top (or) mpstat (or) iostat (or) cat /proc/cpuinfo
+
+15)How to search the files with various conditions like empty file based on size--?
+ans)#find . -name filename
+   find file in the current directory
+#find /home -name filename
+   find filename in home directory
+#find / -name filename
+   find filename in all directory
+#find . -type f -name "*.php"
+   find all php files in current directory.
+#find . -type f -perm 777 -print
+   find all files whose permission is 777
+#find / -type f ! -perm 777
+   find all files without permission 777
+#find / -perm | a=x
+   find all executabl
+#find / -perm | u=r
+   find all readonly files
+#find / -type f -perm 777 -print -exec chmod 644 { } \;
+   find all 777 permission files and use chmod to set permissions to 644
+#find . -type f -name "filename" -exec rm -f { } \;
+   to find a single file and remove that file
+#find / -size 50m
+   to find all 50mb filesto 100mb
+#find / -size +50m -size -100m
+   to find files between 50mb 
+
+16)What is Umask?
+ans)umask is user file creation mask
+for normal user =0002
+for root user =0022
+
+17)How to set the umask permantally for a user?
+ans)umask 222
+ Now we can change Umask value as 222
+ umask u=rwx , g= ,o=
+
+18)How to set permissions for files and directories?
+ans)#chmod 777 filename
+  give 777 permissions for file
+#chmod +rwx file.txt
+  read write execute for all i.e user,group,other
+#chmod u+rw file.txt
+  read write for only user
+#chmod -R 700 file.txt
+  700 permissions are given to the file.txt and its subdirectories also.
+
+19)How to check open ports on local system?
+ans)
+
+20)How to check open ports on remote system?
+ans)
+
+21)How to check which services are enable across reboot?
+ans)
+
+22)What is load average in linux?
+ans)System load/CPU Load – is a measurement of CPU over or under-utilization in a Linux system; 
+the number of processes which are being executed by the CPU or in waiting state. Load average –
+is the average system load calculated over a given period of time of 1, 5 and 15 minutes.
+
+23)what is partial backup?
+ans)
+
+24)when you select single partition for single folder for backup on your server?
+ans)
+
+25)What is boot process in linux?
+ans)The boot process for Linux goes through several stages. Different systems follows different
+stage here in Linux have 6 stages of Boot.
+1.BIOS ( Basic Input/Output System )
+2.MBR ( Master boot Record )
+3.GRUB ( Grand Unified Boot Loader )
+4.Kernel
+5.init
+6.run level ( init 0?—?init 6 )
+BIOS : The term BIOS stands for “Basic I/O System”, It looks for boot loader in CD Rom, hdd, or 
+other boot-able media. Once the boot loader is detected and loaded into memory, BIOS gives the 
+control to it.So in simple terms we can say that “BIOS loads and executes the MBR boot loader “
+MBR : The term MBR stands for “Master boot records” it is located in the first sector of the 
+boo-table disks like /dev/hda or /dev/sda , And it has three component and MBR is less than or 
+equal to 512 Bytes in size
+Primary boot loader info in 1st 446 bytes
+Partition table info in next 64 bytes.
+MBR validation check in last 2 bytes.
+so, we can say that, MBR loads(Boot info) and execute the GRUB boot loader.
+GRUB : As mention above the term GRUB stands for “Grand unified boot loader” , if we have 
+multiple images installed on our system we can choose one to be execute, GRUB display a splash 
+screen, waits for few seconds, if you don’t enter or press anything, it loads the default Kernel
+image as specified in the GRUB Configuration file.
+Kernel : The term Kernel is the core of an operating system which provides access to services 
+and hardware. So the boot loader loads one or multiple “initramfs images” into system memory. 
+[ initramfrs: initial RAM Disk], The kernel use “initramfs”to read drivers and needed modules 
+for booting the system. And it mount the “root file system” as specified in the ‘root=(GRUB 
+configuration file).
+init : During this process, the system locates the root partition and file system. Both are 
+checked and mounted then the system start the init process. Which runs the initialization 
+scripts invoking different scripts in the “/etc/rc*.d “ directory. so we can say that init 
+execute run level program.so init execute the Run level program (init 0- init 6) depend on the 
+default init level settings, system will execute. Look at the /etc/init tab following are the 
+available run level “/etc/init.d/rc.*d”
+Run level : When the Linux System booting up, Those are the run level programs execute from the 
+run level directory or defined by your run level directory.
+
+26)How can we review boot message?
+ans)#dmesg or #dmesg |more (for page vise view)
+The dmesg command displays the system messages contained in the kernel ring buffer. By using 
+this command immediately after booting your computer, you will see the boot messages.
+
+27)What are the fields in the/etc/passwd file?
+ans)Traditionally, the /etc/passwd file is used to keep track of every registered user that has 
+access to a system.The /etc/passwd file is a colon-separated file that contains the following 
+information:
+User name
+Encrypted password
+User ID number (UID)
+User's group ID number (GID)
+Full name of the user (GECOS)
+User home directory
+Login shell
+
+28)How to check which RPM provides/etc/shadow file?
+ans)# rpm -q --whatprovides [file name]
+Here file name is /etc/shadow. if we want to check which rpm provides a /etc/hosts 
+#rpm -q --whatprovides /etc/hosts
+# yum whatprovides [file_name]. this is also for finding rpm by using yum command.
+
+29)In which file the password are saved for each user?
+ans)
+
+30)In which file user information is saved?
+ans)Every user on a Linux system, whether created as an account for a real human being or 
+associated with a particular service or system function, is stored in a file called 
+"/etc/passwd". The "/etc/passwd" file contains information about the users on the system.
+
+31)What is Inode? What is the use? 
+ans)An inode is a data structure used to keep information about a file on your hosting account.
+The number of inodes indicates the number of files and folders you have.This includes everything
+on your account, emails, files, folders, anything you store on the server.
+
+32)/etc/resolve.configExplain and if we not declared here what will happen?
+ans)
+
+33)What is Vcpu,if vcpu% more than 1 what will happen?
+ans)A vCPU stands for virtual central processing unit. One or more vCPUs are assigned to every 
+Virtual Machine (VM) within a cloud environment. Each vCPU is seen as a single physical CPU core
+by the VM's operating system.
+
+34)How you will find out  memory details and explain about swap memory?
+ans)
+
+35)Write a command for 5 days older files with extension of .log ,those files want to move it 
+different directory?
+ans)
+
+36)What is Inode? What is the useof Inode? 
+ans)An inode is an entry in inode table. containing information about regular file and directory
+An inode is a data structure used to keep information about a file on your hosting account. the
+number of inode indicates the number of files and folders you have these includes everything on
+your account, emails,files,floders,anything you store on the server.
+
+37)Booting process? Explain about run levels? what is default run levels?
+ans)
+
+38)How will you find out top ten process?
+ans)
+
+39)How to check the CPU utilization?
+ans) mpstat (or) iostat (or) top (or)cat /proc/cpuinfo
+
+40)Difference between Top/HTop?
+ans)top is reporting the first line of free -m which is basically RAM that is completely empty.
+htop is reporting from the 2nd segment of free -m which is basically the RAM that might have non
+-important stuff loaded into it right now, and could be free'd up automatically if any 
+applications actually needed it.
+
+
+41)Directory special permissions?
+ans)
+
+42)What is soft link and hard link? How to create? What is the difference between these two?
+ans)Hard Link acts like a mirror copy of the original file. These links share the same inodes. 
+Changes made to the original or hard linked file will reflect in the other. When you delete Hard
+Link nothing will happen to the other file. Hard links can't cross file systems.
+Soft Link is an actual link to the original file. These Links will have a different Inodes value
+Soft link points to the original file so if the original file is deleted then the soft link 
+fails. If you delete the Soft Link, nothing will happen to file. The reason for this is, the 
+actual file or directory’s inode is different from the "soft link" created file's inodes. Soft 
+links can cross file systems.
+hard soft link difference linux
+What are Hard Links
+1. Hard Links have same inodes number.
+2. ls -l command shows all the links with the link column showing the number of links.
+3. Links have actual file contents
+4. Removing any link, just reduces the link count but doesn't affect the other links.
+5. You cannot create a Hard Link for a directory.
+6. Even if the original file is removed, the link will still show you the contents of the file.
+What are Soft Links
+1. Soft Links have different inodes numbers.
+2. ls -l command shows all links with second column value 1 and the link points to the original file.
+3. Soft Link contains the path for original file and not the contents.
+4. Removing soft link doesn't affect anything but when the original file is removed, the link
+becomes a 'dangling' link that points to nonexistent file.
+5. A Soft Link can link to a directory.
+
+43)What is cron tab? Explain it? How to configure the schedule a job?
+ans)Cron allows Linux and Unix users to run commands or scripts at a given date and time. You 
+can schedule scripts to be executed periodically. Cron is one of the most useful tool in a Linux
+ or UNIX like operating systems. It is usually used for sysadmin jobs such as backups or 
+cleaning /tmp/ directories and more.
+Crontab Commands
+export EDITOR=vi ;to specify a editor to open crontab file.
+crontab -e    Edit crontab file, or create one if it doesn’t already exist.
+crontab -l    crontab list of cronjobs , display crontab file contents.
+crontab -r    Remove your crontab file.
+crontab -v    Display the last time you edited your crontab file. (This option is only available
+on a few systems.)
+Crontab file
+Crontab syntax :
+A crontab file has five fields for specifying day , date and time followed by the command to be 
+run at that interval.
+1.Minutes specified as a number from 0 to 59.
+2.Hours specified as numbers from 0 to 23.
+3.Days of the month, specified as numbers from 1 to 31.
+4.Months specified as numbers from 1 to 12.
+5.Days of the week, specified as numbers from 0 to 7, with Sunday represented as either/both 0 
+and 7.
+
+44)Explan about Process and threads?
+Ans)A process is an excecuying program. one or more trhreads run in the context of a process. A 
+thread is the basic unit to which the o.s allocates processer time. a thread can excute any part
+of the process code, including parts currently being excuted by another thread.
+
+45)What is zombie proces?
+ans)
+
+45)How will you find out what are  the files using by particular process?
+ans)
+
+46)What is zone file?
+ans)
+
+47)What is netstat command in Linux?
+ans)Netstat is a common command line TCP/IP networking utility available in most versions of 
+Windows, Linux, UNIX and other operating systems. Netstat provides information and statistics 
+about protocols in use and current TCP/IP network connections.
+
+48)How can you prevent anyone from scheduling a cronjob?
+A) Delete the file /etc/cron.deny
+B) Create an empty file called /etc/cron.deny
+C) Create two empty files: /etc/cron.deny and /etc/cron.allow
+D) Create an empty file called /etc/cron.allow
+ans)B
+
+49)Using command substitution, how would you display the value of the present working directory?
+A) echo $(pwd)
+B) echo pwd
+C) $pwd
+D) pwd|echo
+ans)A
+
+50)What is nohup command?
+ans)
+
+51)How to connect remote servers without password? How to archive this?
+ans)
+
+52)How to open file in read only mode in VI editor?
+ans)1.Use view command within vim. The syntax is: view {file-name}
+2.Use vim/vi command line option. The syntax is: vim -R {file-name}
+3.Modifications not allowed using command line option: The syntax is: vim -M {file-name}
+
+53)What is mount? How to create mount?
+ans)
+
+54)How to trouble shoot live logs?
+ans)
+
+55)What is sed command?
+Ans)SED command in UNIX is stands for stream editor and it can perform lot's of function on file 
+like, searching, find and replace, insertion or deletion. Though most common use of SED command 
+in UNIX is for substitution or for find and replace.
+The following sed one-liner will return lines 5 through 10 from myfile.txt:
+# sed -n '5,10p' myfile.txt
+To exclude lines 20 through 35 from myfile.txt, do:
+# sed '20,35d' myfile.txt
+Let’s display lines 5-7 and 10-13 from myfile.txt:
+# sed -n -e '5,7p' -e '10,13p' myfile.txt
+To replace every instance of the word version with story in myfile.txt, do:
+# sed 's/version/story/g' myfile.txt
+If you’re interested in replacing words only within a line range (30 through 40, for example), 
+you can do:
+# sed '30,40 s/version/story/g' myfile.txt
+To remove empty lines or those beginning with # from the Apache configuration file, do:
+# sed '/^#\|^$\| *#/d' httpd.conf
+
+56)What is AWK command
+Ans)Awk stands for Aho Weinberger and Kernighan. Awk is a scripting language to process and 
+analyze files. Some of the features of Awk are given below :
+Mehedi	01	WDE	25000
+Arafat	02	WDE	27000
+Baki	03	SDE	30000
+Mahbub	04	ADE	29000
+Nazmul	05	SDE	24000
+If action has pattern , then matches that pattern with files line by line until end of file and 
+print the matches lines. Example :
+#awk '$4>=25000  {print $1, $2 }' in.txt
+Output are given below
+Mehedi 01
+Arafat 02
+Baki 03
+Mahbub 04
+
+57)What is grep and egrep?
+Ans)I have played around with grep for a while, at some point I have noticed egrep. grep and 
+egrep does the same function, but the way they interpret the pattern is the only difference.
+#ls | grep '.txt|.php'
+Let us consider this example, in this we are listing all the files in the present working 
+directory. Using pipe we are passing the output of ls to grep. The grep command will check 
+whether there is any file with .text|.php extension.
+#ls | egrep '.txt|.php'
+Now consider the same example with egrep, here egrep will check for files with either .txt or 
+.php extension. By using egrep we can even search for multiple pattern, files at a time using 
+one command. We can make grep also do the same by escaping the characters.
+
+58)How to list out the only directories in a Linux?
+Ans)ls -l |grep '^d'
+
+59)How to check the process in Linux?
+Ans)ps -ef
+
+60)How to allow the ports in Linux?
+Ans)
+
+61)What is ping? Telnet? Curl? wget?
+ans)ping:The ping command is usually used as a simple way to verify that a computer can 
+          communicate over the network with another computer or network device. The ping command 
+          operates by sending Internet Control Message Protocol (ICMP) Echo Request messages to 
+          the destination computer and waiting for a response.
+telnet:check connectivityy and check port numbers is their or not.
+wget:it is used for non-interactive network downloaders
+
+62)How to check the services in Linux machine?
+Ans)
+
+63)How to kill the process in Linux?
+Ans)#kill -9 pid (or) kill -3 pid
+    we can find the pid by using the ps -ef
+
+64)What is nice and renice?
+Ans)"nice" is used for starting new processes that are biased to run with more or less CPU.
+The "nice value" is more or less a "process priority". The range is from -20 at its highest to
+19 at its lowest. ... "renice" is for changing the "nice" factor on a process that's already 
+running.
+
+65)How to get the java thread dump?
+Ans)Request a thread dump from the JVM
+1.To obtain a thread dump using jstack, run the following command: jstack -l <pid>
+2.You can output consecutive thread dumps to a file by using the console output redirect/append 
+directive: jstack -l <pid> >> threaddumps.log.
+
+66)How to check the running ports?
+Ans)netstat -tupln
+
+67)How to trouble shoot the remote server having some issue?
+Ans)
+
+68)What is cloud concept?
+ans)cloud is pay-as-u-go. Cloud – The technology of distributed data processing in which some 
+scalable information resources and capacities are provided as a service to multiple external 
+customers through Internet technology. ... Customers also have the opportunity of paid use of
+it, usually through the Internet.
+there are three types of cloud types1.
+1)IAAS:infrastructure as a service. It provides only the hardware device.
+2)PAAS:platform as a service.It provides the hardware as well as software for running the app.
+when we install a software then it will work.
+3)SAAS:software as a service.in the the application also installed. here we no nead to install 
+application.
+
+69)if i am debugging the already existing script written by someone one and it is a huge one and i am 
+not sure of the lines where error may occur, is there any method to find out what is the error apart 
+from running script in debug mode?
+ans)no, we are not finding where the error is present.
